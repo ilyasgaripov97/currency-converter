@@ -1,0 +1,31 @@
+.converter {
+  text-align: center;
+}
+
+.output {
+  font-size: 3rem;
+  font-weight: bolder;
+  padding: 1.5rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+input[type="submit"] {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 1rem;
+  font-size: 1.5rem;
+  margin-top: 0.5rem ;
+}
