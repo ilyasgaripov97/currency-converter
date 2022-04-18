@@ -29,3 +29,18 @@ input[type="submit"] {
   font-size: 1.5rem;
   margin-top: 0.5rem ;
 }
+
+@media all and (min-width: 30rem) {
+
+  .converter {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 1160px;
+  }
+
+  .output {
+    font-size: 4rem;
+  }
+
+}
