@@ -1,4 +1,5 @@
 .currencies {
+  background-color: #fff;
 }
 
 .base {
@@ -19,11 +20,21 @@
 .currency {
   display: flex;
   justify-content: center;
-  background-color: hsl(0, 0%, 99%);
   padding: 16px;
 }
 
 .currency:hover {
-  background-color: hsl(0, 0%, 97%);
+  background-color: hsl(41, 100%, 89%);
   cursor: pointer;
+}
+
+@media all and (min-width: 30rem) {
+
+  .currencies {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 1160px;
+  }
+
 }

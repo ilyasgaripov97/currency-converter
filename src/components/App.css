@@ -1,6 +1,10 @@
 @import "reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300;400;600;700&family=Jost:ital,wght@0,300;0,400;0,700;1,500&family=Open+Sans:wght@300;600&display=swap');
 
+body {
+  background-color: hsl(0, 0%, 96%);
+}
+
 .container {
   display: flex;
   font-family: 'Akshar', 'sans-serif';
@@ -15,4 +19,14 @@
   padding: 16px 8px;
   text-align: center;
   text-decoration: none;
+}
+
+@media all and (min-width: 30rem) {
+
+  .container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1160px;
+  }
+
 }
