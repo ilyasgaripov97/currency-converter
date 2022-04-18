@@ -1,0 +1,29 @@
+.currencies {
+}
+
+.base {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 8px;
+  background-color: #2d2d2d;
+  color: white;
+}
+
+
+.base__currency {
+  font-size: 1.8rem;
+  font-weight: bolder;
+}
+
+.currency {
+  display: flex;
+  justify-content: center;
+  background-color: hsl(0, 0%, 99%);
+  padding: 16px;
+}
+
+.currency:hover {
+  background-color: hsl(0, 0%, 97%);
+  cursor: pointer;
+}

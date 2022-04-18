@@ -9,12 +9,14 @@ import {
 import Currencies from '../pages/Currencies';
 import CurrencyConverter from '../pages/CurrencyConverter';
 
+import './App.css';
+
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Link to="/">CurrencyConverter</Link>
-        <Link to="/currencies">Currencies</Link>
+      <div className="App container">
+        <Link class="navigation-item" to="/">Convert</Link>
+        <Link class="navigation-item" to="/currencies">Currencies</Link>
       </div>
 
       <Routes>
