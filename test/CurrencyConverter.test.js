@@ -18,7 +18,14 @@ test("extract base currency from '15 usd in rub' ", () => {
   expect(extractBaseCurrency(s, currencies)).toBe('USD');
 });
 
+test("extract base currency with no currencies", () => {
+  const s = "15 abcdefgh";
+  const currencies = { usd: 12.5, rub: 9.99, bam: 0.03 };
+  expect(extractBaseCurrency(s, currencies)).toBe("");
+})
+
 test("extract target currency from '15 usd in rub'", () => {
   const s = '15 usd in rub'
-  expect(extractTargetCurrency(s)).toBe('RUB');
+  const currencies = { usd: 12.5, rub: 9.99, bam: 0.03 };
+  expect(extractTargetCurrency(s, currencies)).toBe('RUB');
 });
