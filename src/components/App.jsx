@@ -34,17 +34,25 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/" element={<CurrencyConverter />} />
+        <Route
+          path="/"
+          element={
+            <CurrencyConverter
+              baseCurrency={baseCurrency}
+              setBaseCurrency={setBaseCurrency}
+            />
+          }
+        />
         <Route
           path="/currencies"
-          element={(
+          element={
             <Currencies
               baseCurrency={baseCurrency}
               setBaseCurrency={setBaseCurrency}
               currencies={currencies}
               setCurrencies={setCurrencies}
             />
-          )}
+          }
         />
       </Routes>
     </Router>
