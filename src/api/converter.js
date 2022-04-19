@@ -6,21 +6,8 @@ const ExtractionType = {
 
 Object.freeze(ExtractionType);
 
-/**
- * Extract 'target' currency from conversion string 's'
- * @param s - Conversion string, e.g '15 usd in rub
- * @param currencies - { usd: 80.0, bdt: 0.02, bgn: 0.02, ... }
- */
-export function extractTargetCurrency(s, currencies) {
-  const words = s.split(" ");
-
-  for (let word of words.reverse()) {
-    if (currencies[word]) {
-      return word.toUpperCase();
-    }
-  }
-
-  return "";
+function getFirstNumber(number) {
+  return !Number.isNaN(number) ? number : 0;
 }
 
 /**
@@ -45,11 +32,7 @@ export function extract(s, currencies, extractionType) {
   for (let word of words) {
     if (extractionType === ExtractionType.AMOUNT) {
       const number = Number(word);
-      if (!Number.isNaN(number)) {
-        return number
-      } else {
-        return 0;
-      }
+      return getFirstNumber(number);
     } else {
       if (currencies[word]) {
         return word.toUpperCase();
