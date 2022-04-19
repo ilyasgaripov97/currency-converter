@@ -5,7 +5,8 @@ import {
 } from '../src/api/converter';
 
 test('15 usd in rub', () => {
-  expect(parseInput("15 usd in rub")).toEqual({
+  const currencies = { usd: 12.5, rub: 9.99, bam: 0.03 };
+  expect(parseInput("15 usd in rub", currencies)).toEqual({
     base: 'USD',
     amount: 15,
     target: 'RUB',

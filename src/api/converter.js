@@ -16,8 +16,23 @@ export function extractBaseCurrency(s, currencies) {
   return "";
 }
 
+/**
+ * Extract 'amount' from conversion string 's
+ *
+ * @param s - Conversion string, e.g '15 usd in rub
+ * @returns {number} - { usd: 80.0, bdt: 0.02, bgn: 0.02, ... }
+ */
 export function extractAmount(s) {
+  const words = s.split(" ");
 
+  for (let word of words) {
+    const number = Number(word);
+    if (!Number.isNaN(number)) {
+      return number;
+    }
+  }
+
+  return 0;
 }
 
 /**
