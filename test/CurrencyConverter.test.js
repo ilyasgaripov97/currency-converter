@@ -1,7 +1,8 @@
 import {
   extractBaseCurrency,
   extractTargetCurrency,
-  parseInput
+  parseInput,
+  convert,
 } from '../src/api/converter';
 
 test('15 usd in rub', () => {
@@ -30,3 +31,12 @@ test("extract target currency from '15 usd in rub'", () => {
   const currencies = { usd: 12.5, rub: 9.99, bam: 0.03 };
   expect(extractTargetCurrency(s, currencies)).toBe('RUB');
 });
+
+test("convert 15 usd to rub", () => {
+  const base = "USD";
+  const amount = 15;
+  const target = "RUB";
+  const exchangeRate = 80.5
+
+  expect(convert(base, amount, target)).toBe(amount * exchangeRate);
+})
