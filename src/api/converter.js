@@ -53,5 +53,6 @@ export function parseInput(s, currencies) {
 
 export function convert(base, amount, target, currencies) {
   const exchangeRate = currencies[target.toLowerCase()];
-  return `${(amount * exchangeRate).toFixed(3)} ${target}`
+  const precision = 3;
+  return `${(amount * exchangeRate).toFixed(precision)} ${target}`
 }
