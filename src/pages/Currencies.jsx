@@ -1,30 +1,19 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
+import { fetchCurrencies } from '../api/currency';
 import './Currencies.css';
 
 function Currencies({ baseCurrency, setBaseCurrency, currencies, setCurrencies }) {
   useEffect(() => {
-    const url = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${baseCurrency}.json`;
-
-    fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
-        setCurrencies(json[baseCurrency]);
-      });
+    fetchCurrencies(baseCurrency).then((json) => setCurrencies(json));
   }, []);
 
   const handleCurrencyClick = (e, currency) => {
     setBaseCurrency(currency);
-
-    const url = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${baseCurrency}.json`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
-        setCurrencies(json[baseCurrency]);
-      });
+    fetchCurrencies(baseCurrency).then((json) => setCurrencies(json))
   }
 
   const exchangeRateList = (currencies) => {
-    const list = Object.entries(currencies).map(([currency, exchangeRate]) => (
+    return Object.entries(currencies).map(([currency, exchangeRate]) => (
       <div className="currency" key={currency} onClick={(e) => handleCurrencyClick(e, currency)}>
         <div className="currency__code">
           {currency.toUpperCase()} =
@@ -34,8 +23,6 @@ function Currencies({ baseCurrency, setBaseCurrency, currencies, setCurrencies }
         </div>
       </div>
     ));
-
-    return list;
   };
 
   return (
