@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
+import { fetchCurrencies } from '../api/currency';
 import { convert, parseInput } from '../api/converter';
 import './CurrencyConverter.css';
-import {fetchCurrencies} from '../api/currency';
 
 function CurrencyConverter({ baseCurrency, currencies }) {
   const [query, setQuery] = useState("")
