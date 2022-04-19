@@ -15,8 +15,18 @@ function CurrencyConverter({ baseCurrency, setBaseCurrency, currencies, setCurre
   const handleSubmit = (e) => {
     e.preventDefault();
     const {base, amount, target} = parseInput(query, currencies);
+
+    console.dir({base, amount, target})
+
     fetchCurrencies(base.toLowerCase()).then((json) => {
-      const converted = convert(base, amount, target, json);
+      let converted;
+
+      if (base === target) {
+        converted = convert(base, amount, baseCurrency.toUpperCase(), json);
+      } else {
+        converted = convert(base, amount, target, json);
+      }
+
       setOutput(converted);
     });
   }

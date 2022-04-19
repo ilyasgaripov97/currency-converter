@@ -42,7 +42,6 @@ export function extract(s, currencies, extractionType) {
   }
 }
 
-
 export function parseInput(s, currencies) {
   const base = extract(s, currencies, ExtractionType.BASE_CURRENCY);
   const amount = extract(s, currencies, ExtractionType.AMOUNT);
