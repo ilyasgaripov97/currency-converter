@@ -4,7 +4,7 @@ import { convert, parseInput } from '../api/converter';
 import './CurrencyConverter.css';
 import {fetchCurrencies} from '../api/currency';
 
-function CurrencyConverter({ baseCurrency, setBaseCurrency, currencies, setCurrencies }) {
+function CurrencyConverter({ baseCurrency, currencies }) {
   const [query, setQuery] = useState("")
   const [output, setOutput] = useState("")
 
@@ -14,17 +14,17 @@ function CurrencyConverter({ baseCurrency, setBaseCurrency, currencies, setCurre
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const {base, amount, target} = parseInput(query, currencies);
+    const {initial, amount, target} = parseInput(query, currencies);
 
-    console.dir({base, amount, target})
+    console.dir({initial, amount, target})
 
-    fetchCurrencies(base.toLowerCase()).then((json) => {
+    fetchCurrencies(initial.toLowerCase()).then((json) => {
       let converted;
 
-      if (base === target) {
-        converted = convert(base, amount, baseCurrency.toUpperCase(), json);
+      if (initial === target) {
+        converted = convert(initial, amount, baseCurrency.toUpperCase(), json);
       } else {
-        converted = convert(base, amount, target, json);
+        converted = convert(initial, amount, target, json);
       }
 
       setOutput(converted);

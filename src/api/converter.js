@@ -1,5 +1,5 @@
 const ExtractionType = {
-  BASE_CURRENCY: 1,
+  INITIAL_CURRENCY: 1,
   AMOUNT: 2,
   TARGET_CURRENCY: 3,
 };
@@ -21,7 +21,7 @@ function getFirstNumber(number) {
 export function extract(s, currencies, extractionType) {
   let words;
 
-  if (extractionType === ExtractionType.BASE_CURRENCY || extractionType === ExtractionType.AMOUNT) {
+  if (extractionType === ExtractionType.INITIAL_CURRENCY || extractionType === ExtractionType.AMOUNT) {
     words = s.split(" ");
   }
 
@@ -43,14 +43,14 @@ export function extract(s, currencies, extractionType) {
 }
 
 export function parseInput(s, currencies) {
-  const base = extract(s, currencies, ExtractionType.BASE_CURRENCY);
+  const initial = extract(s, currencies, ExtractionType.INITIAL_CURRENCY);
   const amount = extract(s, currencies, ExtractionType.AMOUNT);
   const target = extract(s, currencies, ExtractionType.TARGET_CURRENCY);
 
-  return { base, amount, target };
+  return { initial, amount, target };
 }
 
-export function convert(base, amount, target, currencies) {
+export function convert(initial, amount, target, currencies) {
   const exchangeRate = currencies[target.toLowerCase()];
   const precision = 3;
   return `${(amount * exchangeRate).toFixed(precision)} ${target}`
