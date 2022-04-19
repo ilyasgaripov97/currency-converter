@@ -16,8 +16,6 @@ function CurrencyConverter({ baseCurrency, currencies }) {
     e.preventDefault();
     const {initial, amount, target} = parseInput(query, currencies);
 
-    console.dir({initial, amount, target})
-
     fetchCurrencies(initial.toLowerCase()).then((json) => {
       let converted;
 
@@ -35,7 +33,7 @@ function CurrencyConverter({ baseCurrency, currencies }) {
     <div className="converter">
       <form onSubmit={handleSubmit}>
         <div className="output">{output}</div>
-        <label htmlFor="currency">
+        <label className="currency" htmlFor="currency">
           Enter query
         </label>
         <input type="text" name="currency" id="currency" placeholder="e.g 15 usd in rub" onChange={handleChange}/>

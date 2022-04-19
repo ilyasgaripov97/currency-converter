@@ -9,6 +9,10 @@
   padding: 1.5rem 0;
 }
 
+.currency {
+  padding-bottom: 8px;
+}
+
 form {
   display: flex;
   flex-direction: column;

@@ -6,7 +6,8 @@ const ExtractionType = {
 
 Object.freeze(ExtractionType);
 
-function getFirstNumber(number) {
+export function detectNumber(word) {
+  const number = Number(word);
   return !Number.isNaN(number) ? number : 0;
 }
 
@@ -32,8 +33,7 @@ export function extract(s, currencies, extractionType) {
   for (let word of words) {
 
     if (extractionType === ExtractionType.AMOUNT) {
-      const number = Number(word);
-      return getFirstNumber(number);
+      return detectNumber(word);
     }
 
     if (word in currencies) {
