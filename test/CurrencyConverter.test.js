@@ -18,5 +18,5 @@ test("convert 15 usd to rub", () => {
   const target = "RUB";
   const currencies = { usd: 1, rub: 80.5, bam: 0.03 };
 
-  expect(convert(base, amount, target, currencies)).toBe(`${amount * currencies.rub} ${target}`);
+  expect(convert(base, amount, target, currencies)).toBe(`${(amount * currencies.rub).toFixed(3)} ${target}`);
 })

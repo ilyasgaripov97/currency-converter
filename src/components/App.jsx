@@ -6,6 +6,7 @@ import {
   Link,
 } from 'react-router-dom';
 
+import {fetchCurrencies} from '../api/currency';
 import Currencies from '../pages/Currencies';
 import CurrencyConverter from '../pages/CurrencyConverter';
 
@@ -16,14 +17,7 @@ function App() {
   const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
-    const url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.min.json';
-
-    fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
-        const keys = Object.keys(json);
-        setCurrencies(keys);
-      });
+    fetchCurrencies(baseCurrency).then((json) => setCurrencies(json))
   }, []);
 
   return (
@@ -40,6 +34,8 @@ function App() {
             <CurrencyConverter
               baseCurrency={baseCurrency}
               setBaseCurrency={setBaseCurrency}
+              currencies={currencies}
+              setCurrencies={setCurrencies}
             />
           }
         />

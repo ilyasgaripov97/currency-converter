@@ -30,13 +30,14 @@ export function extract(s, currencies, extractionType) {
   }
 
   for (let word of words) {
+
     if (extractionType === ExtractionType.AMOUNT) {
       const number = Number(word);
       return getFirstNumber(number);
-    } else {
-      if (currencies[word]) {
-        return word.toUpperCase();
-      }
+    }
+
+    if (word in currencies) {
+      return word.toUpperCase();
     }
   }
 }
@@ -52,5 +53,5 @@ export function parseInput(s, currencies) {
 
 export function convert(base, amount, target, currencies) {
   const exchangeRate = currencies[target.toLowerCase()];
-  return `${amount * exchangeRate} ${target}`
+  return `${(amount * exchangeRate).toFixed(3)} ${target}`
 }

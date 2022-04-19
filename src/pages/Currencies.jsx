@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import { fetchCurrencies } from '../api/currency';
+import { parseInput, convert } from '../api/converter';
 import './Currencies.css';
 
 function Currencies({ baseCurrency, setBaseCurrency, currencies, setCurrencies }) {
@@ -9,7 +10,9 @@ function Currencies({ baseCurrency, setBaseCurrency, currencies, setCurrencies }
 
   const handleCurrencyClick = (e, currency) => {
     setBaseCurrency(currency);
-    fetchCurrencies(baseCurrency).then((json) => setCurrencies(json))
+    fetchCurrencies(baseCurrency).then((json) => {
+      setCurrencies(json)
+    })
   }
 
   const exchangeRateList = (currencies) => {
