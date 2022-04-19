@@ -60,12 +60,7 @@ export function parseInput(s, currencies) {
   return { base, amount, target };
 }
 
-export function pickExchangeRate(currencies, base) {
-
-}
-
-export function convert(from, to) {
-  // pick exchange rate for 'from' currency
-
-  // calculate 'to' value as from * exchange rate
+export function convert(base, amount, target, currencies) {
+  const exchangeRate = currencies[target.toLowerCase()];
+  return `${amount * exchangeRate} ${target}`
 }

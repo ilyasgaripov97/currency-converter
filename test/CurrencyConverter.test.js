@@ -36,7 +36,7 @@ test("convert 15 usd to rub", () => {
   const base = "USD";
   const amount = 15;
   const target = "RUB";
-  const exchangeRate = 80.5
+  const currencies = { usd: 1, rub: 80.5, bam: 0.03 };
 
-  expect(convert(base, amount, target)).toBe(amount * exchangeRate);
+  expect(convert(base, amount, target, currencies)).toBe(`${amount * currencies.rub} ${target}`);
 })
