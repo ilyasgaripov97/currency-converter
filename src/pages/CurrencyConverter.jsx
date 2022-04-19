@@ -33,7 +33,7 @@ function CurrencyConverter({ baseCurrency, currencies }) {
     <div className="converter">
       <form onSubmit={handleSubmit}>
         <div className="output">{output}</div>
-        <label className="currency" htmlFor="currency">
+        <label className="currency-label" htmlFor="currency">
           Enter query
         </label>
         <input type="text" name="currency" id="currency" placeholder="e.g 15 usd in rub" onChange={handleChange}/>
