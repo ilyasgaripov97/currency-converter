@@ -1,39 +1,10 @@
-/**
- * Extract 'base' currency from conversion string 's'
- *
- * @param s - Conversion string, e.g '15 usd in rub
- * @param currencies - { usd: 80.0, bdt: 0.02, bgn: 0.02, ... }
- */
-export function extractBaseCurrency(s, currencies) {
-  const words = s.split(" ");
+const ExtractionType = {
+  BASE_CURRENCY: 1,
+  AMOUNT: 2,
+  TARGET_CURRENCY: 3,
+};
 
-  for (let word of words) {
-    if (currencies[word]) {
-      return word.toUpperCase();
-    }
-  }
-
-  return "";
-}
-
-/**
- * Extract 'amount' from conversion string 's
- *
- * @param s - Conversion string, e.g '15 usd in rub
- * @returns {number} - { usd: 80.0, bdt: 0.02, bgn: 0.02, ... }
- */
-export function extractAmount(s) {
-  const words = s.split(" ");
-
-  for (let word of words) {
-    const number = Number(word);
-    if (!Number.isNaN(number)) {
-      return number;
-    }
-  }
-
-  return 0;
-}
+Object.freeze(ExtractionType);
 
 /**
  * Extract 'target' currency from conversion string 's'
@@ -52,10 +23,46 @@ export function extractTargetCurrency(s, currencies) {
   return "";
 }
 
+/**
+ * Extract extraction type from conversion string.
+ *
+ * @param s - Conversion string, e.g '15 usd in rub
+ * @param currencies - { usd: 80.0, bdt: 0.02, bgn: 0.02, ... }
+ * @param extractionType - one of the values stored in ExtractionType enum.
+ * @returns {string|number}
+ */
+export function extract(s, currencies, extractionType) {
+  let words;
+
+  if (extractionType === ExtractionType.BASE_CURRENCY || extractionType === ExtractionType.AMOUNT) {
+    words = s.split(" ");
+  }
+
+  if (extractionType === ExtractionType.TARGET_CURRENCY) {
+    words = s.split(" ").reverse();
+  }
+
+  for (let word of words) {
+    if (extractionType === ExtractionType.AMOUNT) {
+      const number = Number(word);
+      if (!Number.isNaN(number)) {
+        return number
+      } else {
+        return 0;
+      }
+    } else {
+      if (currencies[word]) {
+        return word.toUpperCase();
+      }
+    }
+  }
+}
+
+
 export function parseInput(s, currencies) {
-  const base = extractBaseCurrency(s, currencies);
-  const amount = extractAmount(s);
-  const target = extractTargetCurrency(s, currencies);
+  const base = extract(s, currencies, ExtractionType.BASE_CURRENCY);
+  const amount = extract(s, currencies, ExtractionType.AMOUNT);
+  const target = extract(s, currencies, ExtractionType.TARGET_CURRENCY);
 
   return { base, amount, target };
 }
