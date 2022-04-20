@@ -6,7 +6,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-import {fetchCurrencies} from '../api/currency';
+import { fetchCurrencies } from '../api/currency';
 import Currencies from '../pages/Currencies';
 import CurrencyConverter from '../pages/CurrencyConverter';
 
@@ -17,41 +17,41 @@ function App() {
   const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
-    fetchCurrencies(baseCurrency).then((json) => setCurrencies(json))
+    fetchCurrencies(baseCurrency).then((json) => setCurrencies(json));
   }, []);
 
   return (
-    <Router>
-      <div className="App container">
-        <Link className="navigation-item" to="/">Convert</Link>
-        <Link className="navigation-item" to="/currencies">Currencies</Link>
-      </div>
+      <Router>
+        <div className="App container">
+          <Link className="navigation-item" to="/">Convert</Link>
+          <Link className="navigation-item" to="/currencies">Currencies</Link>
+        </div>
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <CurrencyConverter
-              baseCurrency={baseCurrency}
-              setBaseCurrency={setBaseCurrency}
-              currencies={currencies}
-              setCurrencies={setCurrencies}
-            />
-          }
-        />
-        <Route
-          path="/currencies"
-          element={
-            <Currencies
-              baseCurrency={baseCurrency}
-              setBaseCurrency={setBaseCurrency}
-              currencies={currencies}
-              setCurrencies={setCurrencies}
-            />
-          }
-        />
-      </Routes>
-    </Router>
+        <Routes>
+          <Route
+              path="/"
+              element={
+                <CurrencyConverter
+                    baseCurrency={baseCurrency}
+                    setBaseCurrency={setBaseCurrency}
+                    currencies={currencies}
+                    setCurrencies={setCurrencies}
+                />
+              }
+          />
+          <Route
+              path="/currencies"
+              element={
+                <Currencies
+                    baseCurrency={baseCurrency}
+                    setBaseCurrency={setBaseCurrency}
+                    currencies={currencies}
+                    setCurrencies={setCurrencies}
+                />
+              }
+          />
+        </Routes>
+      </Router>
   );
 }
 
