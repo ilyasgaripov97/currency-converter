@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { fetchCurrencies } from '../api/currency';
-import { parseInput, convert } from '../api/converter';
 import './Currencies.css';
 
 function Currencies({
