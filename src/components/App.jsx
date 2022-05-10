@@ -23,13 +23,13 @@ function App() {
   return (
       <Router>
         <div className="App container">
-          <Link className="navigation-item" to="/">Convert</Link>
-          <Link className="navigation-item" to="/currencies">Currencies</Link>
+          <Link className="navigation-item" to="projects/currency-converter/">Convert</Link>
+          <Link className="navigation-item" to="projects/currency-converter/currencies">Currencies</Link>
         </div>
 
         <Routes>
           <Route
-              path="/"
+              path="projects/currency-converter/"
               element={
                 <CurrencyConverter
                     baseCurrency={baseCurrency}
@@ -40,7 +40,7 @@ function App() {
               }
           />
           <Route
-              path="/currencies"
+              path="projects/currency-converter/currencies"
               element={
                 <Currencies
                     baseCurrency={baseCurrency}
